@@ -1,0 +1,110 @@
+<%- include('header') -%>
+    <div class="container">
+      
+      <div class="row mt-4 ">
+        <div class="col-md-4 col-3 ">
+
+          <h2>
+            <% if (typeof med === 'undefined' || typeof where !== 'undefined') { %>
+              Add
+          <% }else{ %>
+              Modify
+          <% } %>
+          Medicine
+          </h2>
+        </div>
+        <% if (typeof err !== 'undefined') { %>
+      
+            <div class="alert alert-danger text-center col-sm-2 align-self-center ml-auto mr-auto  "><%= err %></div>
+          
+          
+      <% } %>
+        <div class="col-4 col-md-2 col-sm-3 align-self-center ml-auto">
+          <a href="<%= (typeof pet === 'undefined' || typeof where !== 'undefined') ? '/medicine/finder' : '/medicine/found/'+med._id%>" class="btn btn-primary btn-block float-right">Back</a>
+        </div>
+      
+      </div>
+      <form method="POST">  
+        <div class="row">
+            <div class="col-md-6">
+                <label for="name">Name:</label>
+            </div>
+            <div class="col-md-6 ">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="nev" name = "nev" value="<%= (typeof med === 'undefined') ? '' : med.nev %>" >
+                </div>
+            </div>
+            
+          
+        </div>
+        <div class = "row">
+            <div class="col-md-6">
+                <label for="name">Active substance:</label>
+            </div>
+              <div class="col-md-6 ">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="hatoanyag" name="hatoanyag" value="<%= (typeof med === 'undefined') ? '' : med.hatoanyag %>" >
+                  </div>
+              </div>
+        </div>
+       
+          <div class="row">
+            <div class="col-md-6">
+                <label for="dob">Route of admission:</label>
+
+            </div>
+            <div class="col-md-6 ">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="bevitel" name = "bevitel" value="<%=(typeof med === 'undefined') ? '': med.bevitel %>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <label for="spec">Pack size:</label>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="csomag" name = "csomag" value="<%= (typeof med === 'undefined') ? '' : med.csomag %>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <label for="owner">Strength:</label>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="erosseg" name = "erosseg" value="<%= (typeof med === 'undefined') ? '' : med.erosseg %>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <label for="owner">Prescription:</label>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <select
+                class="form-control mr-2"
+                aria-label="Default select example"
+                id="pres" name="pres"
+              >
+                <option selected value="0">Needed</option>
+                <option value="1">Not needed</option>
+              </select>
+                </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12 text-center mt-4">
+                <input type="submit" class="btn btn-primary btn-lg" value = "<%= (typeof med === 'undefined' || typeof where !== 'undefined') ? 'Add' : 'Modify' %>"></a>
+            </div>
+            
+          </div>
+
+        </form>
+      </div>
+    
+      <%- include('footer') -%>

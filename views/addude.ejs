@@ -1,0 +1,48 @@
+<%- include('header') -%>
+
+    <div class="container-lg">
+      
+      <form class="border mt-5" method="POST">
+        <div class="form-group row  justify-content-end mr-3 mt-3" >
+          <a href="/medicine/found/<%=med._id%>" class="col-2 btn btn-danger btn-block float-end" >Cancel</a>
+        </div>
+        <div class="form-group row justify-content-center">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Type:</label>
+          <div class="col-sm-6">
+            <input class="form-control" id="type" name= "type"> </input>
+          </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Frequency:</label>
+          <div class="col-sm-6">
+            <select class="form-control mr-2" aria-label="Default select example" id="freq" name = "freq">
+              <option  value="0">Very rare</option>
+              <option  value="1" >Rare</option>
+              <option value="2" >Uncommon</option>
+              <option value="3" >Common</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Effect:</label>
+          <div class="col-sm-6">
+            <textarea class="form-control" id="text" name= "text" ></textarea>
+          </div>
+        </div>
+        
+        
+        <div class="form-group row  justify-content-center align-items-center">
+          <div class="col-sm-8">
+            <input type="submit" class="btn btn-primary btn-block" value = "Add"></a>
+          </div>
+            
+        </div>
+        <% if (typeof err !== 'undefined') { %>
+          <div class="row justify-content-center align-items-center mx-2">
+            <div class="alert alert-danger text-center col-sm-8 "><%= err %></div>
+          </div>
+          
+      <% } %>
+      </form>
+    </div>
+    <%- include('footer') -%>

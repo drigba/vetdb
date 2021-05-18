@@ -1,0 +1,82 @@
+<%- include('header') -%>
+
+  <div class="container">
+    <div class="row justify-content-between mt-4">
+      <div class="col-md-4 col-3 px-0 ">
+        <h2>Matches</h2>
+        
+      </div>
+      <div class="col-4 col-md-2 col-sm-3 align-self-center">
+        <a href="/pet/finder" class="btn btn-primary btn-block float-end">Back</a>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-12 px-0">
+        <form class="form-inline" method="GET" action="/pet/found">
+          <select class="form-control mr-2" aria-label="Default select example" id="prop" name = "prop">
+            <option  value="0" <%if (num === '0' ) { %>selected <% } %> >Chip number</option>
+            <option  value="1" <%if (num === '1' ) { %>selected <% } %>>Name</option>
+            <option value="2" <%if (num === '2' ) { %>selected <% } %>>Owner</option>
+            <option value="3" <%if (num === '3' ) { %>selected <% } %>>Species</option>
+          </select>
+          <input type="text" class="form-control mr-2" id="all" name = "all" />
+
+
+
+          <input class="btn btn-primary btn-sm" type="submit" value="Search">
+
+
+
+
+        </form>
+
+
+      </div>
+
+    </div>
+    <div class="row mt-2">
+      <table class="table table-stripped text-center">
+        <thead>
+          <tr>
+            <th scope="col">Chip number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Species</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Current owner</th>
+            <th scope="col">Last registered</th>
+          </tr>
+        </thead>
+        <tbody>
+
+         <% pets.forEach(function(egyPet){ %>
+            <tr>
+              <td>
+                <a href="/pet/found/<%= egyPet._id %>"><%= egyPet.id %></a>
+              </td>
+              <td>
+                
+                <%= egyPet.nev %>
+              </td>
+              <td>
+                <%= egyPet.faj %>
+              </td>
+              <td>
+                <%= moment(egyPet.szuletes).format("YYYY-MM-DD") %>
+              </td>
+              <td>
+                <% if (!(typeof egyPet.tulaj[0]=== 'undefined')) { %>
+                    <%= egyPet.toObject().tulaj.pop().nev %>
+                <% } %>
+              </td>
+              <td>
+                <%= egyPet.last %>
+              </td>
+            </tr>
+            <% }); %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%- include('footer') -%>

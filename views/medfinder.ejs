@@ -1,0 +1,65 @@
+<%- include('header') -%>
+    <div class="container">
+      <div class="row mt-4 justify-content-between">
+        <div class="col-md-4 col-3">
+          <h2>Medicine Finder</h2>
+        </div>
+        <div class="col-4 col-md-2 col-sm-3 align-self-center">
+          <a href="/" class="btn btn-primary btn-block float-right">Back</a>
+        </div>
+      </div>
+      <form method="GET" action= "/medicine/found">
+
+      
+      <div class="row  mt-2">
+        <div class="col-md-6">
+          <label for="name">Name</label>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <input type="name" class="form-control" id="name" name= "name" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="as">Active substance</label>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <input type="as" class="form-control" id="as" name="as" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="pres">Prescription</label>
+        </div>
+        <div class="col-md-6">
+          <select
+            class="form-control mr-2"
+            aria-label="Default select example"
+            id="pres" name="pres"
+          >
+            <option selected value = "0">All</option>
+            <option value="1">Needed</option>
+            <option value="2">Not needed</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-4 col-sm-3 col-md-2 text-center mt-4">
+          <input class="btn btn-primary btn-block" type="submit" value="Search">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-4 col-sm-3 col-md-2 text-center mt-4">
+          <a href="/medicine/finder/add" class="btn btn-primary btn-block"
+            >Add medicine</a
+          >
+        </div>
+      </div>
+    </form>
+    </div>
+  
+    <%- include('footer') -%>

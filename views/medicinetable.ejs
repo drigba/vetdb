@@ -1,0 +1,80 @@
+<%- include('header') -%>
+<!-- start: content -->
+<div class="container " >
+  <div class="row justify-content-between mt-4">
+    <div class="col-md-4 col-3 px-0">
+      <h2>Matches</h2>
+    </div>
+    <div class="col-4 col-md-2 col-sm-3 align-self-center">
+      <a href="/medicine/finder" class="btn btn-primary btn-block float-end ">Back</a>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12 px-0">
+      <form class="form-inline" method="GET" action="/medicine/found">
+       <select class="form-control mr-2" aria-label="Default select example" id="prop" name = "prop" >
+         <option value = "0" <%if (numuno === '0' ) { %>selected <% } %> >Active substance</option>
+         <option value="1" <%if (numuno === '1' ) { %>selected <% } %> >Name</option>
+       </select>
+       <input type="owner " class="form-control mr-2" id="all" name = "all" >
+         <label for="pres" class="float-right mr-2" >Prescription:</label>
+           <select class="form-control mr-2" aria-label="Default select example" id = "pres" name = "pres">
+             <option value = "0" <%if (numdos === '0' ) { %>selected <% } %> >All</option>
+             <option value="1" <%if (numdos === '1' ) { %>selected <% } %> >Needed</option>
+             <option value="2" <%if (numdos === '2' ) { %>selected <% } %> >Not needed</option>
+           </select>
+
+
+           <input class="btn btn-primary btn-sm" type="submit" value="Search">       
+
+
+      </form>
+     
+       
+     </div>
+
+
+  </div>
+
+          
+
+
+    <div class="row mt-3">
+
+        <table class="table">
+            <thead>
+              <tr>
+
+                <th scope="col">Name</th>
+
+                <th scope="col">Active substance</th>
+
+                <th scope="col">Prescription</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <% medicines.forEach(function(egyMed){ %>
+                <tr>
+                  <td>
+                    <a href="/medicine/found/<%= egyMed._id %>"><%= egyMed.nev %></a>
+                  </td>
+                  <td>
+                    <%= egyMed.hatoanyag %>
+                  </td>
+                  <td>
+                    <%= egyMed.veny %>
+                  </td>
+                </tr>
+                <% }); %>
+             
+             
+            </tbody>
+          </table>
+    </div>
+</div>
+    
+</div>
+<!-- end: content -->
+
+<%- include('footer') -%>

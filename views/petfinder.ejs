@@ -1,0 +1,66 @@
+<%- include('header') -%>
+<div class="container">
+  <div class="row mt-4 justify-content-between">
+    <div class="col-md-4 col-3">
+      <h2>Pet Finder</h2>
+    </div>
+    <div class="col-4 col-md-2 col-sm-3 align-self-center">
+      <a href="/" class="btn btn-primary btn-block float-end">Back</a>
+    </div>
+  </div>
+  <form method="GET" action="/pet/found" >
+    <div class="row justify-content-center mt-2">
+      <div class="col-md-6">
+        <label for="chipnum">Chip number</label>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="chipnum" name= "chipnum" />
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="name" name = "name" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="owner">Owner</label>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="owner" name = "owner" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="species">Species</label>
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="species" name = "species" />
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-4 col-sm-3 col-md-2 text-center mt-4">
+        <input class="btn btn-primary btn-block" type="submit" value="Search">
+      </div>
+    </div>
+
+    
+  </form>
+  <div class="row justify-content-center">
+    <div class="col-4 col-sm-3 col-md-2 text-center mt-4">
+      <a href="/pet/finder/add" class="btn btn-primary btn-block"
+        >Add patient</a
+      >
+    </div>
+  </div>
+</div>
+<%- include('footer') -%>

@@ -1,0 +1,100 @@
+<%- include('header') -%>
+    <div class="container">
+      
+      <div class="row mt-4 ">
+        <div class="col-md-4 col-3 ">
+
+          <h2>
+            <% if (typeof pet === 'undefined' || typeof where !== 'undefined') { %>
+              Add
+          <% }else{ %>
+              Modify
+          <% } %>
+          Patient
+          </h2>
+        </div>
+        <% if (typeof err !== 'undefined') { %>
+      
+            <div class="alert alert-danger text-center col-sm-2 align-self-center ml-auto mr-auto  "><%= err %></div>
+          
+          
+      <% } %>
+        <div class="col-4 col-md-2 col-sm-3 align-self-center ml-auto">
+          <a href="<%= (typeof pet === 'undefined' || typeof where !== 'undefined') ? '/pet/finder' : '/pet/found/'+pet._id%> " class="btn btn-primary btn-block float-right">Back</a>
+        </div>
+      
+      </div>
+      <form method="POST">  
+        <div class="row  mt-2 ">
+            <div class="col-md-6">
+                <label for="chipnum">Chip number:</label>
+            
+          </div>
+          <div class="col-md-6 ">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="id" name="id" value="<%= (typeof pet === 'undefined') ? '' : pet.id %>" >
+              </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <label for="name">Name:</label>
+            </div>
+            <div class="col-md-6 ">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="nev" name = "nev" value="<%= (typeof pet === 'undefined') ? '' : pet.nev %>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <label for="dob">Date of birth:</label>
+
+            </div>
+            <div class="col-md-6 ">
+              <div class="mb-3">
+                  <input type="date" class="form-control" id="kor" name = "kor" value="<%=(typeof pet === 'undefined') ? '': moment(pet.szuletes).format('YYYY-MM-DD')%>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <label for="spec">Species:</label>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="faj" name = "faj" value="<%= (typeof pet === 'undefined') ? '' : pet.faj %>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <label for="owner">Owner:</label>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="tulaj" name = "tulaj" value="<%= (typeof pet === 'undefined') ? '' : pet.toObject().tulaj.pop().nev %>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <label for="text">Phone number:</label>
+            </div>
+            <div class="col-md-6 ">
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="tel" name= "tel" value= "<%= (typeof pet === 'undefined') ? '' : pet.toObject().tulaj.pop().tel %>" >
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center mt-4">
+                <input type="submit" class="btn btn-primary btn-lg" value = "<%= (typeof pet === 'undefined' ||typeof where !== 'undefined') ? 'Add' : 'Modify' %>"></a>
+            </div>
+            
+          </div>
+
+        </form>
+      </div>
+    
+      <%- include('footer') -%>

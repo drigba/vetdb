@@ -1,0 +1,152 @@
+<%- include('header') -%> 
+    <div class="container">
+      <div class="row justify-content-between mt-3">
+
+        <div class="col-4 col-md-2 col-sm-3 col-3 px-0 ">
+          <div class="row mt-3 align-items-center">
+            <div class="col-8">
+              <h2>Details</h2>
+            </div>
+            <div class="col-2">
+              <a href="/pet/found/<%= pet._id %>/edit" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+
+            </div>
+            <div class="col-2">
+              <a href="/pet/found/<%= pet._id %>/del" class="btn btn-sm btn-primary"><i class="far fa-trash-alt"></i></a>
+
+            </div>
+          </div>
+          
+          
+        </div>
+        <div class="col-4 col-md-2 col-sm-3 align-self-center pr-0">
+          <a href="/pet/found" class="btn btn-primary btn-block float-right">Back</a>
+        </div>
+      
+      </div>
+
+       <div class= "row justify-content-between mt-3 mb-5">
+           <div class = "col-3 col-sm-4 col-md-5 px-0">
+
+              <table class="table table-bordered px-0 mb-0 table-sm">
+                <tbody>
+                  <tr>
+                    <th scope="row">Chip number:</th>
+                    <td><%= pet.id %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Name:</th>
+                    <td><%= pet.nev %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Date of birth:</th>
+                    <td><%= moment(pet.szuletes).format("YYYY-MM-DD") %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Species:</th>
+                    <td><%= pet.faj %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Current owner:</th>
+                    <td><% if (!(typeof pet.tulaj=== 'undefined')) { %>
+                      <%= pet.toObject().tulaj.pop().nev %>
+                  <% } %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Phone number</th>
+                    <td><% if (!(typeof pet.tulaj=== 'undefined')) { %>
+                      <%= pet.toObject().tulaj.pop().tel %>
+                  <% } %></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            
+           </div>
+           <div class = "col-3 col-sm-4 col-md-5 px-0 align-self-end">
+             <div class = "row justify-content-between align-items-center">
+               <div class="col-9 px-0">
+                <h3>List of owners</h3>
+               </div>
+               <div class="col-3 px-0 ">
+                <a href="/pet/found/<%= pet._id %>/addowner" class="btn btn-sm btn-primary float-right"><i class="far fa-edit"></i></a>
+               </div>
+             </div>
+             <div class = "row align-items-end">
+               <div class="col-md-12 px-0 overflow-auto" style=" max-height: 120px;">
+
+               
+              <table class="table table-bordered table-sm pb-0" >
+                <thead>
+                  <tr>
+    
+                    <th scope="col">Name</th>
+    
+                    <th scope="col">From</th>
+    
+                    <th scope="col">To</th>
+    
+                  </tr>
+                </thead>
+                <tbody>
+                  <% pet.tulaj.forEach(function(egyowner){ %>
+                  <tr>
+                    <td>
+                
+                      <%= egyowner.nev %>
+                    </td>
+                    <td>
+                      
+                      <%= moment(egyowner.from).format("YYYY-MM-DD")%>
+                    </td>
+                    <td>
+                      <%= moment(egyowner.to).format("YYYY-MM-DD") %>
+                      
+                    </td>
+                  </tr>
+                  <% }); %>
+                
+                 
+                </tbody>
+              </table>
+           </div>
+          </div>
+
+           </div>
+       </div>
+       <div class="row justify-content-between align-items-center mt-3 ">
+         <div class="col-4 px-0">
+           <h4>List of given medicines</h4>
+         </div>
+         <div class="col-4 col-md-2 col-sm-3 align-self-center pr-0">
+          <a href="/pet/found/<%= pet._id %>/addmed" class="btn btn-primary btn-block float-end">Add</a>
+         </div>
+       </div>
+       <div class="row mt-2 mb-4">
+        <div class="col-md-12 px-0 overflow-auto" style=" max-height: 200px;">
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Medicine</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pet.gyogyszerek.forEach(function(egyMed){ %>
+            <tr>
+              
+              <td><%= moment(egyMed.datum).format("YYYY-MM-DD") %></td>
+              <td><a href="/pet/found/<%= pet._id %>/medicine/<%= egyMed.nev._id %>"><%=egyMed.nev.nev %></a> </td>
+
+            </tr>
+            
+          <% }); %>
+           
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    
+    <%- include('footer') -%>

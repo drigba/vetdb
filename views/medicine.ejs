@@ -1,0 +1,119 @@
+<%- include('header') -%>
+    <div class="container">
+      <div class="row justify-content-between mt-3">
+        <div class="col-4 col-md-2 col-sm-3 col-3 px-0 ">
+          <div class="row mt-3 align-items-center">
+            <div class="col-8">
+              <h2>Details</h2>
+            </div>
+            <div class="col-2">
+              <a href="/medicine/found/<%= med._id %>/edit" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+
+            </div>
+
+          </div>
+          
+          
+        </div>
+        
+        <div class="col-4 col-md-2 col-sm-3 align-self-center pr-0">
+          <a href="<%= (typeof pet === 'undefined') ? '/medicine/found' : '/pet/found/'+pet._id %>" class="btn btn-primary btn-block float-right">Back</a>
+        </div>
+      
+      </div>
+      <div class="row justify-content-between mt-3 px-0 align-items-end">
+        <div class="col-5 px-0">
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <th scope="row">Name:</th>
+                <td><%=med.nev%></td>
+              </tr>
+              <tr>
+                <th scope="row">Active substance:</th>
+                <td><%= med.hatoanyag%> </td>
+              </tr>
+              <tr>
+                <th scope="row">Route of adm:</th>
+                <td><%= med.bevitel%></td>
+              </tr>
+              <tr>
+                <th scope="row">Pack size:</th>
+                <td><%= med.csomag%>x</td>
+              </tr>
+              <tr>
+                <th scope="row">Strenth:</th>
+                <td><%= med.erosseg%> mg</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-5  px-0">
+          <div class = "row   mt-3 mx-0 ">
+            <div class="col-6 px-0">
+              <h5>Treatment options</h5>
+            </div>
+              <div class="col-4">
+                <a href="/medicine/found/<%= med._id %>/addtreat" class="btn btn-primary btn-sm float-end"><i class="fas fa-plus-circle"></i></a>
+                <a href="/medicine/found/<%= med._id %>/poptreat" class="btn btn-primary btn-sm float-end"><i class="fas fa-trash-alt"></i></a>
+  
+              </div>
+              
+          </div>
+          <div class="row border mx-0">
+            <ul>
+              <% med.felhasznalas.forEach(function(felh){ %>
+              <li><h6><%= felh %></h6></li>
+              <% }); %>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+     
+      <div class="row align-items-center mt-3 ">
+        <div class="col-2 px-0">
+          <h5>Dosage</h5>
+          
+        </div>
+        <div class="col-1 col-md-1 col-sm-1 align-self-center pr-0">
+          <a href="/medicine/found/<%= med._id %>/dosage" class="btn btn-primary btn-sm "><i class="far fa-edit"></i></a>
+        </div>
+      </div>
+      <div class="row border"><h7>
+        <%=med.adagolas %>
+      </h7> </div>
+           
+      <div class="row align-items-center mt-4 mb-0 ">
+        <div class="col-3 px-0">
+          <h5>Undesirable effects</h5>
+        </div>
+        <div class="col-2 align-self-center px-0">
+          <a href="/medicine/found/<%= med._id %>/addude" class="btn btn-primary btn-sm "><i class="fas fa-plus-circle"></i></a>
+          <a href="/medicine/found/<%= med._id %>/delude" class="btn btn-primary btn-sm "><i class="fas fa-trash-alt"></i></a>
+        </div>
+
+      </div>
+     
+        <div class="row justify-content-center px-0">
+          <div class="col-12 border overflow-auto" style=" max-height: 200px;">
+            
+            <% med.mellekhatas.forEach(function(mellek){ %>
+            <h6><%= mellek.tipus %></h6>
+            <ul>
+
+              <% if(typeof mellek.nagyonritka !== 'undefined') {%> <li> <p class="text-justify">Very rare: <%= mellek.nagyonritka%> </p></li> <%};%> 
+              <% if(typeof mellek.ritka !== 'undefined') {%> <li><p class="text-justify">Rare: <%= mellek.ritka%> </p></li> <%};%> 
+                <% if(typeof mellek.nemgyakori !== 'undefined') {%> <li><p class="text-justify">Uncommon: <%= mellek.nemgyakori%> </p></li> <%};%> 
+               <% if(typeof mellek.gyakori !== 'undefined') {%> <li><p class="text-justify">Common: <%= mellek.gyakori %> </p></li>  <%};%> 
+            
+            </ul>
+
+            <% }); %>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('footer') -%>
